@@ -9,9 +9,8 @@ HEADER = {'user-agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/5
 def get_html(url,  params = None):
     r = requests.get(url, headers = HEADER, params = params)
     r.encoding = 'utf-8'
-    return r
+    return
 
-#def get_content(html):
 
 
 def get_stat(site):
@@ -23,34 +22,17 @@ def get_stat(site):
 
 
 
-
-# def parse(url):
-#     URL1 = url
-#     get_html = get_html(URL1)
-#     if get_html == 200:
-#         print('vse horosho')
-
-
-
-
-
-# parse(URL)
-
-
 def parse(url):
     url = url
     get_html1 = get_html(url)
     if get_html1.status_code == 200:
         get_stat(get_html1.text)
-        
+    else:
+        print(get_html1.status_code)
+
+
 
 parse(URL)
-
-
-
-
-
-
 
 
 
