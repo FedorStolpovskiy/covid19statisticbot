@@ -9,7 +9,7 @@ HEADER = {'user-agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/5
 def get_html(url,  params = None):
     r = requests.get(url, headers = HEADER, params = params)
     r.encoding = 'utf-8'
-    return
+    return r
 
 
 
