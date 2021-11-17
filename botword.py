@@ -2,25 +2,16 @@ import telebot
 import sqlite3
 
 from telebot.types import Message
-# stat = open('bdforbot.db', 'r')
 
-
-				
 
 def get_stat(): 
 	sqlite_stat = sqlite3.connect('bdforbot.db')
 	cursor = sqlite_stat.cursor()
-	total_stat = []
 	cursor.execute("""SELECT * FROM citiesinfo""")
 	records = cursor.fetchall()
-	# print(records)
-	for i in records:
-		c = 'Статистика короновируса по региону: {0}\nНовых случаев сегодня({4}): {1}\nВсего заболевших: {2}\nСмертей: {3}'.format(i[1], i[3], i[2], i[4], i[1])#'Статистика короновируса по региону: ' + str(i[1]) + '\nНовых случаев сегодня: ' + str(i[5]) + '\nВсего заболевших: ' + str(i[4]) + '\nСмертей: ' + str(i[6])
-		total_stat.append(c)
-	ll = records
 	cursor.close()
 
-	return  ll
+	return records
     
 
 records = get_stat()
@@ -29,10 +20,7 @@ for i in records:
 	i = list(i)
 	records1.append(i)
 
-# print(records1)
 
-print(type(records1))
-print(type(records1[0]))
 
 
 bot = telebot.TeleBot("1288067636:AAECQyobWJUOkt8W2i-NXF7ywpidVQp6RiQ")
@@ -72,9 +60,6 @@ def out_stat(message, findcity = 0):
 	if findcity == 0 and message.text !='Уведомления🔔': 
 		bot.send_message(message.chat.id, 'нет региона')
 	
-
-	
-
 
 bot.polling()	
 
